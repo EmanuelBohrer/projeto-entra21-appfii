@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<!-- ThymeLeaf -->
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+  <!--  Materialize -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/style/style_1.css" />
+  <link rel="stylesheet" href="/style/home_1.css" />
+  <title>appfii.com - Cadastro de Usuário</title>
+
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+</head>
+
+<body class="align">
+
+  <div class="grid">
+  
+    <h1>appfii.com</h1>
+    		<div class = "text">
+		<div class="alert alert-success alert-dismissible fade show" th:if="${mensagem}">
+		 <a span th:text="${mensagem}"></span></a>
+		</div>
+    
+    <p class="login_title">Cadastro de usuário</p>
+<form class="form login" method="post" th:object="${usuario}" th:action="@{/usuario/salvar}">
+
+
+      <div class="form__field">
+        <label for="login__name"><svg class="icon">
+            <use xlink:href="#icon-user"></use>
+          </svg><span class="hidden">Nome_completo</span></label>
+        <input id="login__name" type="text"  class="form__input" placeholder="Nome completo"  th:field="*{nome}"required>
+      </div>
+
+      <div class="form__field">
+        <label for="login__email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
+          </svg>
+          <span class="hidden">E-mail</span></label>
+        <input autocomplete="email" id="login__email" type="email"  class="form__input" placeholder="E-mail"
+          th:field="*{email}" required>
+          
+                  <div class="col-sm-5"> 
+			    	<span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+			    	<span class="mensagem" th:if="${emailExiste}" th:text="${emailExiste}"></span>
+			    
+			    </div>
+      </div>
+
+      <div class="form__field">
+        <label for="login__date">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M128 0c17.7 0 32 14.3 32 32V64H288V32c0-17.7 14.3-32 32-32s32 14.3 32 32V64h48c26.5 0 48 21.5 48 48v48H0V112C0 85.5 21.5 64 48 64H96V32c0-17.7 14.3-32 32-32zM0 192H448V464c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V192zm64 80v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm128 0v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H208c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V272c0-8.8-7.2-16-16-16H336zM64 400v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H80c-8.8 0-16 7.2-16 16zm144-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H208zm112 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H336c-8.8 0-16 7.2-16 16z" />
+          </svg>
+          <span class="hidden">Data_nascimento</span></label>
+        <input autocomplete="date" id="login__date" type="date" th:field="*{data_nasc}" class="form__input"
+          placeholder="Data de nascimento" required>
+      </div>
+
+      <div class="form__field">
+        <label for="login__password"><svg class="icon">
+            <use xlink:href="#icon-lock"></use>
+          </svg><span class="hidden">Senha</span></label>
+        <input id="login__password" type="password" th:field="*{senha}" class="form__input" placeholder="Senha" required>
+      </div>
+
+      <div class="form__field">
+        <input type="submit" value="Salvar">
+      </div>
+
+    </form>
+
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="icons">
+    <symbol id="icon-arrow-right" viewBox="0 0 1792 1792">
+      <path
+        d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" />
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 1792 1792">
+      <path
+        d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z" />
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 1792 1792">
+      <path
+        d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z" />
+    </symbol>
+  </svg>
+
+</body>
+
+<!-- Nav 
+<header>
+		<nav>
+			<div class="nav-wrapper">
+			<a href="/"><img src="images/logo_3.png" class="img_logo"></a>
+			</ul>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#"><i class="material-icons left logoffBotao">power_settings_new</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</header> 
+
+  Form 
+    <h1 class="tituloLogin">Faça seu login</h1>
+
+   Mensagem de validação 
+    <th:block class="mensagemValidacao" th:include="appFii/mensagemValidacao"></th:block>
+    <form class="container formUsuario col" method="post">
+      <div class="row">
+
+       Input de e-mail
+        <div class="form"><i class="material-icons login">local_post_office</i><input placeholder="E-mail:" id="email"
+            type="text" class="validate" /></div>
+
+        Input de senha 
+        <div class="form"><i class="material-icons login">lock_outline</i><input placeholder="Senha:" id="senha"
+            type="password" class="validate" /></div>
+
+      </div>
+
+      <button href="/dashboard" class="waves-effect waves-light btn salvar" type="submit">Entrar</button>
+
+      <a href="/" class="waves-effect waves-light forgot_password">Esqueci minha senha</a>
+  
+      <a href="/cadastro" class="waves-effect waves-light"><i class="material-icons left">exit_to_app</i>Criar conta</a>
+    </form>
+
+
+  JavaScript -->
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+
+</html>

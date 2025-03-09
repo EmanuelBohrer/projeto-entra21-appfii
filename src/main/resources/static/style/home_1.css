@@ -1,0 +1,238 @@
+:root {
+    --baseColor: #F4EDE8;
+}
+
+.align {
+    display: flex;
+    align-items: end;
+}
+
+.grid {
+    inline-size: 90%;
+    margin-inline: auto;
+    max-inline-size: 20rem;
+    background: #312E38;
+    transform: translateY(50%);
+}
+
+.hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+:root {
+    --iconFill: #666360;
+}
+
+.icons {
+    display: none;
+}
+
+.icon {
+    block-size: 1em;
+    display: inline-block;
+    fill: var(--iconFill);
+    inline-size: 1em;
+    vertical-align: middle;
+    background: #3e3b4700;
+}
+
+:root {
+    --htmlFontSize: 100%;
+
+    --bodyBackgroundColor: #312E38;
+    --bodyColor: var(--baseColor);
+    --bodyFontFamily: "Soin";
+    --bodyFontFamilyFallback: sans-serif;
+    --bodyFontSize: 0.875rem;
+    --bodyFontWeight: 400;
+    --bodyLineHeight: 1.5;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: var(--htmlFontSize);
+}
+
+body {
+    background-color: var(--bodyBackgroundColor);
+    color: var(--bodyColor);
+    font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
+    font-size: var(--bodyFontSize);
+    font-weight: var(--bodyFontWeight);
+    line-height: var(--bodyLineHeight);
+    margin: 0;
+    min-block-size: 100vh;
+}
+
+:root {
+    --anchorColor: #F4EDE8;
+}
+
+a {
+    color: var(--anchorColor);
+    outline: 0;
+    text-decoration: none;
+    color: #FF9000;
+    background: #312E38;
+}
+
+a:focus,
+a:hover {
+    text-decoration: underline;
+}
+
+:root {
+    --formGap: 0.875rem;
+}
+
+input {
+    background-image: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    transition: background-color 0.3s;
+    background: #312E38;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+.form {
+    display: grid;
+    gap: var(--formGap);
+}
+
+.form input[type="password"],
+.form input[type="text"],
+.form input[type="submit"] {
+    inline-size: 100%;
+}
+
+.form__field {
+    display: flex;
+    background: #312E38;
+}
+
+.form__input {
+    flex: 1;
+}
+
+:root {
+    --loginBorderRadus: 0.25rem;
+    --loginColor: #F4EDE8;
+
+    --loginInputBackgroundColor: #3E3B47;
+    --loginInputHoverBackgroundColor: #55525e9a;
+
+    --loginLabelBackgroundColor: #3e3b47bb;
+
+    --loginSubmitBackgroundColor: #FF9000;
+    --loginSubmitColor: #F4EDE8;
+    --loginSubmitHoverBackgroundColor: #ff9100bb;
+}
+
+.login {
+    color: var(--loginColor);
+}
+
+.login label,
+.login input[type="text"],
+.login input[type="password"],
+.login input[type="submit"] {
+    border-radius: var(--loginBorderRadus);
+    padding: 1rem;
+}
+
+.login label {
+    background-color: var(--loginLabelBackgroundColor);
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    padding-inline: 1.25rem;
+}
+
+.login input[type="password"],
+.login input[type="text"] {
+    background-color: var(--loginInputBackgroundColor);
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.login input[type="password"]:focus,
+.login input[type="password"]:hover,
+.login input[type="text"]:focus,
+.login input[type="text"]:hover {
+    background-color: var(--loginInputHoverBackgroundColor);
+}
+
+.login input[type="submit"] {
+    background-color: var(--loginSubmitBackgroundColor);
+    color: var(--loginSubmitColor);
+}
+
+.login input[type="submit"]:focus,
+.login input[type="submit"]:hover {
+    background-color: var(--loginSubmitHoverBackgroundColor);
+}
+
+h1::after {
+    content: "";
+    width: 100px;
+    position: absolute;
+    margin: 0 auto;
+    height: 3px;
+    background: #FF9000;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+}
+
+form.form.login {
+    background: #312E38;
+}
+
+p {
+    margin-block: 1.5rem;
+    background: #312E38;
+    color: #666360;
+}
+
+p.login_title {
+    text-align: center;
+    transform: translateY(50%);
+    font-size: 20px;
+    color: #F4EDE8;
+}
+
+use {
+    background: #3e3b47bb;
+}
+
+.esqueci-senha a {
+    color: #666360;
+}
+
+.text--center {
+    text-align: center;
+}
+
+.material-icons {
+    color: #FF9000;
+    font-size: 20px;
+    background-color: var(--bodyBackgroundColor);
+    transform: translate(10%, 27%);
+}

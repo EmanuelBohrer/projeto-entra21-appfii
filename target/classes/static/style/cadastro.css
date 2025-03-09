@@ -1,0 +1,9 @@
+body {
+	background-image: linear-gradient(90deg, rgba(49,46,56,1) 1%, rgba(49,46,56,0) 100%),
+                  url("https://lh6.googleusercontent.com/-B4mnOfTK7yhDDXozUF2rV4KgmjQMhc5PFeGp9Bu-PJOsz9XFns3EeEja4h2wcMLxomeEHhFwqNY4V24kAmEZoMfbniwNtd4CCzPbiZ12bWfn6zUJAtnS6-f2_VP_njrGg=w900");	
+    background-repeat: no-repeat;
+	background-position: right;
+	height: 849px;
+	background-size: 900px;
+}
+

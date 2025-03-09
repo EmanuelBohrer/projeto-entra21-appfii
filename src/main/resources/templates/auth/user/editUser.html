@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<!--  Materialize -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+
+
+<link rel="stylesheet" th:href="@{/bootstrap-5.1.3-dist/css/bootstrap.min.css}">
+<script th:src="@{/jquery-3.6.0-dist/jquery-3.6.0.min.js}"></script>
+<script th:src="@{/bootstrap-5.1.3-dist/js/bootstrap.min.js}"></script>
+
+
+
+
+
+
+<!-- CSS -->
+<link rel="stylesheet" href="/style/style_listas.css"/>
+<link rel="stylesheet" href="/style/cadastro.css" />
+
+
+<title>Editar Usuário - AppFii</title>
+</head>
+<body>
+
+
+<nav th:fragment="nav" class="navbar navbar-expand-lg navbar-light bg-warning">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">AppFii</a>
+			
+				
+			
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="/usuario/novo">Cadastrar Usuário</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/usuario/admin/listar">Lista de Usuários</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+<div class="container">
+  <div class="row">  	
+    <div class="col">
+    <br>
+    	<h1>Alterar usuário</h1> 
+    	<br>
+		<form th:action="@{/usuario/editar/{id}(id=${usuario.id})}" th:object="${usuario}" method="post">
+			  
+				<div class="input-field login">
+         <input  placeholder="Nome completo:"  type="text"  th:field="*{nome}">
+        </div>
+		
+		<div class="input-field login">
+          <input placeholder="E-mail:"  type="email"  th:field="*{email}">
+          <div class="col-sm-5"> 
+			    	<span class="mensagem" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+			    	<span class="mensagem" th:if="${emailExiste}" th:text="${emailExiste}"></span>
+			    
+			    </div>
+        </div>
+		
+		<div class="input-field login">
+         <input placeholder="Data de nascimento (dd/mm/aaaa):"  type ="date" th:field="*{data_nasc}"   >
+        </div>
+		
+		<div class="input-field login">
+          <input placeholder="Senha:"  type="text"  th:field="*{senha}">
+        </div>
+        
+			<br>
+			<input  class="btn btn-primary" type="submit" value="Alterar"/>
+		</form>
+    </div>
+</div>
+</div>
+
+<script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

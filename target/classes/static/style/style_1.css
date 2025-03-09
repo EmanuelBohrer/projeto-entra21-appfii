@@ -1,0 +1,51 @@
+/* CONVERSÃO DE MEDIDAS
+
+   https://codebeautify.org/px-to-percent-converter
+
+   PALETA DE CORES 
+
+   texto: #F4EDE8
+   fundo do body: #312E38
+   fundo barra de navega��o e forms: #28262E
+   placeholders e detalhes: #666360
+   detalhes e bot�es: #FF9000 */
+
+/* GERAL */
+
+@font-face {
+	font-family: Soin;
+	src: url("/fonts/soin_sans_neue-webfont.woff2") format("woff2"),
+		url("/fonts/soin_sans_neue-webfont.woff") format("woff");
+}
+
+* {
+	color: #F4EDE8;
+	font-family: 'Jost', sans-serif;
+	font-size: 16px;
+	background: #28262E;
+	box-sizing: border-box
+}
+
+body {
+	background: #312E38;
+	padding-bottom: 20%;
+}
+
+/* TÍTULOS */
+
+h1,
+h3,
+h5 {
+	font-family: Soin, sans-serif;
+	color: #F4EDE8;
+	text-align: center;
+	text-shadow: 0px 0px 2px grey;
+	background: #312E38;
+
+}
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+	transform: translateY(-200%);
+}

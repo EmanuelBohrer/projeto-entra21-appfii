@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="stylesheet" href="/style/styleCss.css"/>
+<meta charset="UTF-8">
+<title>=D</title>
+</head>
+<body bgcolor= #bdbdbd>
+		<header>
+<!-- 	<nav>
+	    <div class="nav-wrapper">
+	      <a href="#" class="brand-logo">Lista de Eventos</a>
+	      <ul id="nav-mobile" class="right hide-on-med-and-down">
+	      <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Home</a>
+	        <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a>
+	        <a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a>
+	        <li><a href="/login" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Logout</a>
+	         </ul>	
+	    </div>
+	  </nav> -->
+	  </header>
+<h1><b>Lista de Fundos Imobiliários</b></h1>
+
+<table class ="container" width = "100%" border="2px" bordercolor="#000000">
+	<thead>
+	<tr>
+	<th> Id </th>
+		<th>Código</th>
+<!--                          <th>Setor</th>
+                          <th>Preço atual</th>
+                          <th>Liquidez</th>
+                          <th>Dividendo</th>
+                          <th>DY</th>
+                          <th>DY(3m)</th>
+                          <th>DY(6m)</th>
+                          <th>DY(12m)</th>
+                          <th>DY ano</th>
+                          <th>Variação preço</th>
+                          <th>Rentab</th>
+                          <th>Patrimônio</th>
+                          <th>VPA</th>
+                          <th>P/VPA</th>
+                          <th>Variação</th>
+                          <th>Rent. Patrimônio</th>
+                          <th>Vacancia</th>
+                          <th>Quantidade</th>
+ -->                 </tr>
+		
+		</thead>	
+	 <tbody>
+	<tr th:each="tabelaFun : ${teste}">      
+<!--	<td><span th:text="${tabelaFun.id}"></span></td> -->
+           <td><span th:text= "${tabelaFun}"></span></td>
+<!-- 			<td><span th:text= "${tabelaFun.setor}"></span></td>
+			<td><span th:text= "${tabelaFun.getPreco_atual}"></span></td>
+		 	<td><span th:text= "${tabela.getLiquidez_diaria}"></span></td>
+			<td><span th:text= "${tabela.getDividendo}"></span></td >
+			<td><span th:text= "${tabela.getDy}"></span></td>
+			<td><span th:text= "${tabela.getDy_3m}"></span></td>
+			<td><span th:text= "${tabela.getDy_6m}"></span></td>
+ -->		
+		
+			
+		<!-- 	<td><span><a th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons left">delete</i></a></span></td>
+			<td><span><a th:href="${(#mvc.url('EC#editarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons left">edit</i></a></span></td> -->
+		</tr>
+	</tbody>
+	</table>
+ <!--JavaScript at end of body for optimized loading-->
+      <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+    </body>
+</html>

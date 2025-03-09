@@ -1,0 +1,409 @@
+	<!DOCTYPE html>
+	<htmlxmlns:th="http://thymeleaf.org"
+		  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+		 <!--Import Google Icon Font-->
+	      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	      <!--Import materialize.css-->
+	      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+	
+	      <!--Let browser know website is optimized for mobile-->
+	      <meta charset=UTF-8 "viewport" content="width=device-width, initial-scale=1.0"/>
+	      <link rel="stylesheet" href="style/styleCss.css"/>
+	      
+	      
+	      
+	<title>AppFii</title>
+	</head>
+	<body bgcolor= #bdbdbd>
+	<header>
+		<nav>
+		    <div class="nav-wrapper">
+		     
+		      <ul id="nav-mobile" class="right hide-on-med-and-down">
+		       <li><a href="/" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Home</a>
+		        <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a>
+		        <a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">format_list_bulleted</i>Lista de Eventos</a>
+		        <li><a href="/login" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Logout</a>
+		         </ul>	
+		    </div>
+		  </nav>
+		  </header>
+	
+	<h1>Cadastro de Fundos Imobiliários</h1>
+	
+	<!-- <div th:each="evento : ${evento}" class="container detalhesEvento"> -->
+	<div class="container detalhesEvento">
+	<h5>Detalhes da Carteira</h5>
+		<div class="row">
+			<p>Nome: <span th:text= "${evento.nomeDaCarteira}"></span></p>
+		<!-- <p>Local: <span th:text= "${evento.local}"></span></p>
+			<p>Data: <span th:text= "${evento.data}"></span></p>
+			<p>Horario: <span th:text= "${evento.horario}"></span></p> -->
+		</div>
+	</div>	
+			<th:block th:include="evento/mensagemValidacao"></th:block>
+		<div class = "container formConvidado">
+		<form method="post">
+		<!--    Código do Fii: <input type="text" value="" name="nomeConvidado"/> -->
+			    Código do Fii: <div class="row">
+    							<div class="col s12">
+   								   <div class="row">
+    							    <div class="input-field col s12">
+   							       <i class="material-icons prefix">textsms</i>
+     						     <input type="text" id="autocomplete-input" class="autocomplete" name="nomeConvidado"/>
+    					      <label for="autocomplete-input">Autocomplete</label>
+  					     	 </div>
+ 					      </div>
+ 					   	 </div>
+					  	 </div>
+			    Quantidade Cotas: <input type="text" value="" name="rg"/>
+	            <button class="waves-effect waves-light btn" type="submit">Adicionar na Carteira:</button>
+	    </form>
+	   </div>
+	   
+
+		<table class = "container tabelaConvidado">
+		<h5>Lista de Fii´s:</h5>
+	            <thead>
+	                <tr>
+	                    <th>Código:</th>
+	                    <th>Preço Atual</th>
+	                    <th>Cotas:</th>
+	                    <th>Proventos</th>
+	             	    <th>Rentabilidade</th> 
+	             	    <th>Investido</th>
+	             	    <th>Setor</th>
+	                    <th>Deletar</th>
+	                    <th>Editar</th>
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr th:each="convidados : ${convidados}">
+	                    <td><span th:text="${convidados.nomeConvidado}"></span></td>
+	                    <td><span th:text="${convidados.cotacao}"></span></td>
+	                    <td><span th:text="${convidados.rg}"></span></td>
+	                    <td><span th:text="${convidados.proventos}" ></span></td>
+	                    <td><span th:text="${convidados.rentabilidade}"></span>%</td>
+	                    <td>R$<span th:text="${convidados.investido}"></span></td>
+	                    <td><span th:text="${convidados.setor}"></span></td>
+	                    <td><a class="waves-effect waves-light btn.small"
+	                        th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidados.rg)).build()}"><i
+	                            class="material-icons left">delete</i></a></td>
+	                     <td><a class="waves-effect waves-light btn.small"
+	                        th:href="${(#mvc.url('EC#editarConvidado').arg(0, evento.codigo).arg(1, convidados.rg)).build()}"><i
+	                            class="material-icons left">edit</i></a></td>   
+	                    </tr>
+	                    
+	        	                    
+	               <tfoot>
+  					<tr>
+     					<td colspan="2"><b>Total Dividendos:</b></td>
+     					<td th:text="${#numbers.formatCurrency(#aggregates.sum(convidados.![proventos]))}"></td>
+     					<td colspan="2"><b>Valor Carteita:</b></td>
+     					<td th:text="${#numbers.formatCurrency(#aggregates.sum(convidados.![investido]))}"></td>
+ 					</tr>
+				</tfoot>
+	                    
+	                    
+	            </tbody>
+	        </table>
+	        
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+	<script>
+	  $(document).ready(function(){
+		    $('input.autocomplete').autocomplete({
+		      data: {
+		        "ABCP11": null,
+		        "AFHI11": null,
+		        "AFOF11": null,
+		        "AIEC11": null,
+		        "ALMI11": null,
+		        "ALZR11": null,
+		        "APTO11": null,
+		        "ARCT11": null,
+		        "ARRI11": null,
+		        "ATSA11": null,
+		        "BARI11": null,
+		        "BBFI11B": null,
+		        "BBFO11": null,
+		        "BBGO11": null,
+		        "BBIM11": null,
+		        "BBPO11": null,
+		        "BBRC11": null,
+		        "BCFF11": null,
+		        "BCIA11": null,
+		        "BCRI11": null,
+		        "BICE11": null,
+		        "BICR11": null,
+		        "BIME11": null,
+		        "BLCA11": null,
+		        "BLCP11": null,
+		        "BLMC11": null,
+		        "BLMG11": null,
+		        "BLMO11": null,
+		        "BLMR11": null,
+		        "BMLC11": null,
+		        "BNFS11": null,
+		        "BPFF11": null,
+		        "BPML11": null,
+		        "BRCO11": null,
+		        "BRCR11": null,
+		        "BREV11": null,
+		        "BRLA11": null,
+		        "BTAL11": null,
+		        "BTCR11": null,
+		        "BTLG11": null,
+		        "BTRA11": null,
+		        "BTSG11": null,
+		        "BTWR11": null,
+		        "BZLI11": null,
+		        "CACR11": null,
+		        "CARE11": null,
+		        "CBOP11": null,
+		        "CCRF11": null,
+		        "CEOC11": null,
+		        "CJCT11": null,
+		        "CNES11": null,
+		        "CORM11": null,
+		        "CPFF11": null,
+		        "CPTS11": null,
+		        "CRFF11": null,
+		        "CTXT11": null,
+		        "CVBI11": null,
+		        "CXAG11": null,
+		        "CXCE11B": null,
+		        "CXCI11": null,
+		        "CXCO11": null,
+		        "CXRI11": null,
+		        "CXTL11": null,
+		        "CYCR11": null,
+		        "DEVA11": null,
+		        "DRIT11B": null,
+		        "DVFF11": null,
+		        "EDFO11B": null,
+		        "EDGA11": null,
+		        "EQIR11": null,
+		        "ERCR11": null,
+		        "ERPA11": null,
+		        "EURO11": null,
+		        "EVBI11": null,
+		        "FAED11": null,
+		        "FAMB11B": null,
+		        "FATN11": null,
+		        "FCFL11": null,
+		        "FEXC11": null,
+		        "FIGS11": null,
+		        "FIIB11": null,
+		        "FIIP11B": null,
+		        "FISC11": null,
+		        "FIVN11": null,
+		        "FLCR11": null,
+		        "FLMA11": null,
+		        "FLRP11": null,
+		        "FMOF11": null,
+		        "FPAB11": null,
+		        "FVPQ11": null,
+		        "GALG11": null,
+		        "GAME11": null,
+		        "GCFF11": null,
+		        "GCRA11": null,
+		        "GCRI11": null,
+		        "GESE11B": null,
+		        "GGRC11": null,
+		        "GSFI11": null,
+		        "GTLG11": null,
+		        "GTWR11": null,
+		        "HAAA11": null,
+		        "HABT11": null,
+		        "HBRH11": null,
+		        "HCHG11": null,
+		        "HCRI11": null,
+		        "HCTR11": null,
+		        "HFOF11": null,
+		        "HGBS11": null,
+		        "HGCR11": null,
+		        "HGFF11": null,
+		        "HGIC11": null,
+		        "HGLG11": null,
+		        "HGPO11": null,
+		        "HGRE11": null,
+		        "HGRS11": null,
+		        "HGRU11": null,
+		        "HLOG11": null,
+		        "HOSI11": null,
+		        "HPDP11": null,
+		        "HRDF11": null,
+		        "HREC11": null,
+		        "HSAF11": null,
+		        "HSLG11": null,
+		        "HSML11": null,
+		        "HSRE11": null,
+		        "HTMX11": null,
+		        "HUSC11": null,
+		        "IBCR11": null,
+		        "IBFF11": null,
+		        "IDFI11": null,
+		        "IRDM11": null,
+		        "IRIM11": null,
+		        "ITIP11": null,
+		        "ITIT11": null,
+		        "JFLL11": null,
+		        "JGPX11": null,
+		        "JPPA11": null,
+		        "JRDM11": null,
+		        "JSAF11": null,
+		        "JSRE11": null,
+		        "KFOF11": null,
+		        "KINP11": null,
+		        "KISU11": null,
+		        "KNCA11": null,
+		        "KNCR11": null,
+		        "KNHY11": null,
+		        "KNIP11": null,
+		        "KNRE11": null,
+		        "KNRI11": null,
+		        "KNSC11": null,
+		        "LASC11": null,
+		        "LFTT11": null,
+		        "LGCP11": null,
+		        "LUGG11": null,
+		        "LVBI11": null,
+		        "MALL11": null,
+		        "MATV11": null,
+		        "MAXR11": null,
+		        "MBRF11": null,
+		        "MCCI11": null,
+		        "MCHF11": null,
+		        "MCHY11": null,
+		        "MFAI11": null,
+		        "MFII11": null,
+		        "MGCR11": null,
+		        "MGFF11": null,
+		        "MGHT11": null,
+		        "MGLG11": null,
+		        "MORC11": null,
+		        "MORE11": null,
+		        "MXRF11": null,
+		        "NAVT11": null,
+		        "NCHB11": null,
+		        "NEWL11": null,
+		        "NEWU11": null,
+		        "NSLU11": null,
+		        "NVHO11": null,
+		        "NVIF11B": null,
+		        "ONEF11": null,
+		        "ORPD11": null,
+		        "OUFF11": null,
+		        "OUJP11": null,
+		        "OULG11": null,
+		        "OURE11": null,
+		        "PABY11": null,
+		        "PATC11": null,
+		        "PATL11": null,
+		        "PLCR11": null,
+		        "PLOG11": null,
+		        "PLRI11": null,
+		        "PORD11": null,
+		        "PQAG11": null,
+		        "PQDP11": null,
+		        "PRSV11": null,
+		        "PVBI11": null,
+		        "QAGR11": null,
+		        "QAMI11": null,
+		        "QIRI11": null,
+		        "RBCO11": null,
+		        "RBDS11": null,
+		        "RBED11": null,
+		        "RBFF11": null,
+		        "RBGS11": null,
+		        "RBHG11": null,
+		        "RBHY11": null,
+		        "RBIR11": null,
+		        "RBLG11": null,
+		        "RBRD11": null,
+		        "RBRF11": null,
+		        "RBRL11": null,
+		        "RBRP11": null,
+		        "RBRR11": null,
+		        "RBRS11": null,
+		        "RBRY11": null,
+		        "RBVA11": null,
+		        "RBVO11": null,
+		        "RCRB11": null,
+		        "RDPD11": null,
+		        "RECR11": null,
+		        "RECT11": null,
+		        "RECX11": null,
+		        "RELG11": null,
+		        "RFOF11": null,
+		        "RMAI11": null,
+		        "RNDP11": null,
+		        "RNGO11": null,
+		        "RRCI11": null,
+		        "RVBI11": null,
+		        "RZAG11": null,
+		        "RZAK11": null,
+		        "RZTR11": null,
+		        "SADI11": null,
+		        "SARE11": null,
+		        "SCPF11": null,
+		        "SDIL11": null,
+		        "SEQR11": null,
+		        "SHPH11": null,
+		        "SNCI11": null,
+		        "SNFF11": null,
+		        "SPTW11": null,
+		        "SPVJ11": null,
+		        "SRVD11": null,
+		        "STRX11": null,
+		        "TEPP11": null,
+		        "TGAR11": null,
+		        "TORD11": null,
+		        "TRNT11": null,
+		        "TRXF11": null,
+		        "URPR11": null,
+		        "VCJR11": null,
+		        "VCRI11": null,
+		        "VCRR11": null,
+		        "VGHF11": null,
+		        "VGIA11": null,
+		        "VGIP11": null,
+		        "VGIR11": null,
+		        "VIFI11": null,
+		        "VILG11": null,
+		        "VINO11": null,
+		        "VISC11": null,
+		        "VIUR11": null,
+		        "VJFD11": null,
+		        "VLOL11": null,
+		        "VOTS11": null,
+		        "VRTA11": null,
+		        "VSHO11": null,
+		        "VSLH11": null,
+		        "VTLT11": null,
+		        "VVPR11": null,
+		        "VXXV11": null,
+		        "WPLZ11": null,
+		        "WTSP11B": null,
+		        "XPCA11": null,
+		        "XPCI11": null,
+		        "XPCM11": null,
+		        "XPHT11": null,
+		        "XPIN11": null,
+		        "XPLG11": null,
+		        "XPML11": null,
+		        "XPPR11": null,
+		        "XPSF11": null,
+		        "XTED11": null,
+		        "YUFI11B": null,
+		        "Microsoft": null,
+		        "Google": 'https://placehold.it/250x250'
+		        
+		      },
+		    });
+		  });
+	</script>
+	</body>
+	</html>

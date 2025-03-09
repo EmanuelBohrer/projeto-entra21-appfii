@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<!-- ThymeLeaf -->
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+
+  <!-- Fontes -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+  <!--  Materialize -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style/style_1.css" />
+  <link rel="stylesheet" href="style/home_1.css" />
+  <title>appfii.com - Login</title>
+
+  <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+
+</head>
+
+
+<body class="align">
+  <div class="grid">
+    <h1>appfii.com</h1>
+    <div class="col">
+			
+				<div class="alert alert-danger alert-dismissible fade show"
+					th:if="${param.error}">
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+					<span>Senha ou usuário inválido</span>
+				</div>
+    
+    <p class="login_title">Faça seu login</p>
+    <form th:action="@{/login}" method="post" class="form login">
+
+      <div class="form__field">
+        <label for="login__email">
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
+            <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z" />
+          </svg>
+          <span class="hidden">E-mail</span></label>
+        <input autocomplete="email" id="login__email" type="text" name="username" class="form__input" placeholder="E-mail">
+      </div>
+
+      <div class="form__field">
+        <label for="login__password"><svg class="icon">
+            <use xlink:href="#icon-lock"></use>
+          </svg><span class="hidden">Senha</span></label>
+        <input id="login__password" type="password" name="password" class="form__input" placeholder="Senha">
+      </div>
+
+      <div class="form__field">
+        <input type="submit" value="Entrar">
+      </div>
+
+    </form>
+
+    <p class="text--center">Não tem conta? <a href="/usuario/novo">Faça seu cadastro<i
+          class="material-icons right">exit_to_app</i></a></p>
+ 
+
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="icons">
+    <symbol id="icon-arrow-right" viewBox="0 0 1792 1792">
+      <path
+        d="M1600 960q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H245q-52 0-84.5-37.5T128 1024V896q0-53 32.5-90.5T245 768h704L656 474q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z" />
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 1792 1792">
+      <path
+        d="M640 768h512V576q0-106-75-181t-181-75-181 75-75 181v192zm832 96v576q0 40-28 68t-68 28H416q-40 0-68-28t-28-68V864q0-40 28-68t68-28h32V576q0-184 132-316t316-132 316 132 132 316v192h32q40 0 68 28t28 68z" />
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 1792 1792">
+      <path
+        d="M1600 1405q0 120-73 189.5t-194 69.5H459q-121 0-194-69.5T192 1405q0-53 3.5-103.5t14-109T236 1084t43-97.5 62-81 85.5-53.5T538 832q9 0 42 21.5t74.5 48 108 48T896 971t133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5T896 896 624.5 783.5 512 512t112.5-271.5T896 128t271.5 112.5T1280 512z" />
+    </symbol>
+  </svg>
+
+  <!-- JavaScript
+  <script>
+
+    var nav = $('nav');
+    var line = $('<div />').addClass('line');
+
+    line.appendTo(nav);
+
+    var active = nav.find('.active');
+    var pos = 0;
+    var wid = 0;
+
+    if (active.length) {
+      pos = active.position().left;
+      wid = active.width();
+      line.css({
+        left: pos,
+        width: wid
+      });
+    }
+
+    nav.find('ul li a').click(function (e) {
+      e.preventDefault();
+      if (!$(this).parent().hasClass('active') && !nav.hasClass('animate')) {
+
+        nav.addClass('animate');
+
+        var _this = $(this);
+
+        nav.find('ul li').removeClass('active');
+
+        var position = _this.parent().position();
+        var width = _this.parent().width();
+
+        if (position.left >= pos) {
+          line.animate({
+            width: ((position.left - pos) + width)
+          }, 300, function () {
+            line.animate({
+              width: width,
+              left: position.left
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        } else {
+          line.animate({
+            left: position.left,
+            width: ((pos - position.left) + wid)
+          }, 300, function () {
+            line.animate({
+              width: width
+            }, 150, function () {
+              nav.removeClass('animate');
+            });
+            _this.parent().addClass('active');
+          });
+        }
+
+        pos = position.left;
+        wid = width;
+      }
+    });
+
+  </script>
+-->
+</body>
+
+</html>

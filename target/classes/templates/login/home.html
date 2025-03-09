@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<!-- ThymeLeaf -->
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<!-- Fontes -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&display=swap" rel="stylesheet">
+
+<!--  Materialize -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+
+<!-- CSS -->
+<link rel="stylesheet" href="style/style.css" />
+<link rel="stylesheet" href="style/home.css" />
+<title></title>
+</head>
+<body>
+
+<!-- Nav 
+<header>
+		<nav>
+			<div class="nav-wrapper">
+			<a href="/"><img src="images/logo_3.png" class="img_logo"></a>
+			</ul>
+				<ul id="nav-mobile" class="right hide-on-med-and-down">
+					<li><a href="#"><i class="material-icons left logoffBotao">power_settings_new</i></a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+-->
+
+<!-- Form -->
+	<h1 class="tituloCadastro">Faça seu login</h1>
+	
+<!-- Mensagem de validação -->
+	<th:block class="mensagemValidacao" th:include="appFii/mensagemValidacao"></th:block>
+	
+	
+	<form class="container formUsuario col" method="post" action="/login" th:object="${usuario}">
+	
+	<div class="alert alert - danger" role="alert" th:if="${msg}">
+		<strong th:text="${msg}"></strong>
+	</div>
+	
+		<div class = "row">
+		
+		<div class="input-field login">
+          <i class="material-icons login">local_post_office</i><input placeholder="E-mail:" th:field="*{email}" type="text" >
+        </div>
+		
+		<div class="input-field login">
+          <i class="material-icons login">lock_outline</i><input placeholder="Senha:" th:field="*{senha}" type="password" >
+        </div>
+        
+		</div>
+		<button href="/dashboard" class="waves-effect waves-light btn salvar" type="submit">Entrar</button>
+	</form>
+	
+	<a href="#" class="forgot_password">Esqueci minha senha</a>
+	
+	<a th:href="@{cadastro}" class="waves-effect waves-light"><i class="material-icons left">exit_to_app</i>Criar conta</a>
+	
+	
+<!-- JavaScript -->
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+</html>
